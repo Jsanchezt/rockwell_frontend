@@ -1,14 +1,29 @@
 <script setup>
 import {useStore} from "vuex";
+const products = ref([]);
 const categories = ref([]);
 const loading = ref(true);
 const store = useStore()
+const getProducts = (payload) => store.dispatch("products/getProducts", {});
 const getCategories = (payload) => store.dispatch("categories/getCategories", {});
+
+const transformToDesiredFormat = (data) => {
+  const result = {};
+  for (const item of data) {
+    result[item.code] = item.name;
+  }
+  return result;
+}
+
+
 const getData = ()=>{
   loading.value = true
   getCategories().then(data=>{
-    categories.value = data;
-    loading.value =false
+    categories.value = transformToDesiredFormat(data.data);
+    getProducts().then(data=>{
+      products.value = data;
+      loading.value =false
+    })
   })
 }
 
@@ -21,7 +36,7 @@ getData()
       <VCard >
         <v-card-title class="pt-5 pb-5 d-flex justify-space-between align-center">
           <p class="ma-0">
-            Listado de categorias
+            Listado de productos
           </p>
           <div class="">
             <v-btn density="compact" elevation="10" icon="bx-refresh" class="mr-5" @click="getData"  color="white"></v-btn>
@@ -31,7 +46,7 @@ getData()
               :to="{name:'categories.new'}"
               size="small"
             >
-              Agregar categoría
+              Agregar producto
             </VBtn>
           </div>
 
@@ -52,10 +67,13 @@ getData()
               Nombre
             </th>
             <th>
-              Codigo
+              Categoría
             </th>
             <th>
-              Creado el
+              Marca
+            </th>
+            <th>
+              Precio
             </th>
             <th>
               Acciones
@@ -64,13 +82,13 @@ getData()
           </thead>
           <tbody>
             <template v-if="!loading">
-              <tr v-if="categories.data.length === 0">
+              <tr v-if="products.data.length === 0">
                 <td colspan="5" class="text-center">
                   Sin categorias
                 </td>
               </tr>
               <tr
-                v-for="(item,index) in categories.data"
+                v-for="(item,index) in products.data"
                 :key="'user'+index"
               >
                 <td>
@@ -80,16 +98,20 @@ getData()
                   {{ item.name }}
                 </td>
                 <td class="text-center">
-                  {{ item.code}}
+                  {{ categories[item.category]}}
                 </td>
                 <td class="text-center">
-                  {{ item.created_at }}
+                  {{ item.brand}}
+                </td>
+                <td class="text-center">
+                   <span class="tachado">${{ item.old_price }}</span> /
+                   <span>${{ item.price }}</span>
                 </td>
                 <td class="text-center">
                   <VBtn
                     rel="noopener noreferrer"
                     color="primary"
-                    :to="{name:'categories.detail', params:{category_id: item.id}}"
+                    :to="{name:'products.detail', params:{product_id: item.id}}"
                     size="small"
                   >
                     Ver detalle
@@ -110,3 +132,9 @@ getData()
     </VCol>
   </VRow>
 </template>
+
+<style>
+.tachado {
+  text-decoration: line-through;
+}
+</style>

@@ -5,7 +5,7 @@ import axios from "../../api/client";
 export default  {
     namespaced: true,
     state: () => ({
-        categories: [],
+        products: [],
         loading: true
     }),
     mutations: {
@@ -17,10 +17,10 @@ export default  {
         }
     },
     actions:{
-        storeCategories({commit}, payload){
+        storeProducts({commit}, payload){
             commit('setLoading',  true);
             return new Promise((resolve, reject) => {
-                axios.post('/categories', payload)
+                axios.post('/products', payload)
                     .then(response=>{
                         resolve(response.data);
                     })
@@ -31,10 +31,10 @@ export default  {
                     })
             });
         },
-        getCategories({commit}, query){
+        getProducts({commit}, query){
             commit('setLoading',  true);
             return new Promise((resolve, reject) => {
-                axios.get('/categories', {params:query})
+                axios.get('/products', {params:query})
                     .then(response=>{
                         resolve(response.data);
                         commit('setCategories',response.data);
@@ -46,10 +46,10 @@ export default  {
                     })
             });
         },
-        getCategory({commit}, id){
+        getProduct({commit}, id){
             commit('setLoading',  true);
             return new Promise((resolve, reject) => {
-                axios.get('/categories/'+id)
+                axios.get('/products/'+id)
                     .then(response=>{
                         resolve(response.data);
                     })
@@ -60,10 +60,10 @@ export default  {
                     })
             });
         },
-        delCategory({commit}, id){
+        delProduct({commit}, id){
             commit('setLoading',  true);
             return new Promise((resolve, reject) => {
-                axios.delete('/categories/'+id)
+                axios.delete('/products/'+id)
                     .then(response=>{
                         resolve(response.data);
                     })

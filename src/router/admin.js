@@ -37,5 +37,27 @@ export default [
                 component: () => import('../pages/categories/categories_detail.vue'),
             }
         ]
+    },
+    {
+        path: 'products',
+        name: 'products',
+        redirect: { name: "products.index" },
+        children: [
+            {
+                path: "",
+                name: "products.index",
+                component: () => import('../pages/products/products.vue'),
+            },
+            {
+                path: "/new",
+                name: "products.new",
+                component: () => import('../pages/categories/categories_new.vue'),
+            },
+            {
+                path: ":product_id",
+                name: "products.detail",
+                component: () => import('../pages/categories/categories_detail.vue'),
+            }
+        ]
     }
 ];

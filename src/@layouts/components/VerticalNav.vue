@@ -1,7 +1,8 @@
 <script setup>
 import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
-import { useDisplay } from 'vuetify'
-import logo from '@images/_logo.svg'
+import {useDisplay, useTheme} from 'vuetify'
+import logo_light from "@images/_logo.svg";
+import logo_dark from "@images/w_logo.svg";
 
 const props = defineProps({
   tag: {
@@ -36,6 +37,11 @@ const updateIsVerticalNavScrolled = val => isVerticalNavScrolled.value = val
 const handleNavScroll = evt => {
   isVerticalNavScrolled.value = evt.target.scrollTop > 0
 }
+
+const vuetifyTheme = useTheme()
+const _logo = computed(() => {
+  return vuetifyTheme.global.name.value === 'light' ? logo_light : logo_dark
+})
 </script>
 
 <template>
@@ -59,7 +65,7 @@ const handleNavScroll = evt => {
           class="app-logo d-flex align-center gap-x-3 app-title-wrapper ma-auto"
         >
           <h1 class="leading-normal text-center">
-            <img :src="logo" style="width: 130px">
+            <img :src="_logo" style="width: 130px">
           </h1>
         </RouterLink>
       </slot>
