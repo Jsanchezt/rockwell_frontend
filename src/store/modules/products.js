@@ -31,6 +31,20 @@ export default  {
                     })
             });
         },
+        updateProducts({commit}, payload){
+            commit('setLoading',  true);
+            return new Promise((resolve, reject) => {
+                axios.put('/products/'+payload.id, payload)
+                    .then(response=>{
+                        resolve(response.data);
+                    })
+                    .catch(error =>{
+                        reject(error.response)
+                    }).finally(()=>{
+                        commit('setLoading',  false);
+                    })
+            });
+        },
         getProducts({commit}, query){
             commit('setLoading',  true);
             return new Promise((resolve, reject) => {

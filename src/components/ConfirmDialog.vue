@@ -31,7 +31,7 @@
           class="body-2 font-weight-bold"
           outlined
           @click.native="agree"
-        >Eliminar</v-btn
+        >{{ btn_message }}</v-btn
         >
       </v-card-actions>
     </v-card>
@@ -47,6 +47,7 @@ export  default {
       reject: null,
       message: null,
       title: null,
+      btn_message: "Eliminar",
       options: {
         color: "grey lighten-3",
         width: 400,
@@ -56,9 +57,10 @@ export  default {
     };
   },
   methods: {
-    open(title, message, options) {
+    open(title, message, options, btn_message='Eliminar') {
       this.dialog = true;
       this.title = title;
+      this.btn_message = btn_message;
       this.message = message;
       this.options = Object.assign(this.options, options);
       return new Promise((resolve, reject) => {

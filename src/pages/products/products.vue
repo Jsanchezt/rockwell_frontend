@@ -43,7 +43,7 @@ getData()
             <VBtn
               rel="noopener noreferrer"
               color="primary"
-              :to="{name:'categories.new'}"
+              :to="{name:'products.new'}"
               size="small"
             >
               Agregar producto

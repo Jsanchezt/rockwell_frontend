@@ -27,7 +27,7 @@ export default [
                 component: () => import('../pages/categories/categories.vue'),
             },
             {
-                path: "/new",
+                path: "new",
                 name: "categories.new",
                 component: () => import('../pages/categories/categories_new.vue'),
             },
@@ -49,14 +49,14 @@ export default [
                 component: () => import('../pages/products/products.vue'),
             },
             {
-                path: "/new",
+                path: "new",
                 name: "products.new",
-                component: () => import('../pages/categories/categories_new.vue'),
+                component: () => import('../pages/products/products_new.vue'),
             },
             {
                 path: ":product_id",
                 name: "products.detail",
-                component: () => import('../pages/categories/categories_detail.vue'),
+                component: () => import('../pages/products/products_detail.vue'),
             }
         ]
     }

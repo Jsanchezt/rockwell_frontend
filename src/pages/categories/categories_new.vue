@@ -145,7 +145,7 @@ const { getRootProps, getInputProps, isDragActive, ...rest } = useDropzone({
                         md="9"
                       >
                         <VTextField
-                          id="name"
+                          id="code"
                           :error-messages="errors?.code?'El código es requerido':''"
                           v-model="data.code"
                           placeholder="Tijeras"
@@ -212,6 +212,7 @@ const { getRootProps, getInputProps, isDragActive, ...rest } = useDropzone({
                           </div>
                           <p class="file_error " v-if="errors?.image" >La imagen es requerida</p>
                         </div>
+
                       </VCol>
                     </VRow>
                   </VCol>
