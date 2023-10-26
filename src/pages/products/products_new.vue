@@ -97,7 +97,7 @@ const saveFiles = (files, key) => {
   const formData = new FormData(); // pass data as a form
   formData.append("images", files[0]);
   axios
-    .post('http://localhost/api/files', formData, {
+    .post('https://rockwell.com.mx/backend/api/files', formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -174,6 +174,7 @@ const clickDrop = (e)=>{
                           :readonly="readonly"
                           placeholder="Tijeras"
                           persistent-placeholder
+                          autocomplete="off"
                         />
                       </VCol>
                     </VRow>
@@ -225,6 +226,7 @@ const clickDrop = (e)=>{
                           :readonly="readonly"
                           placeholder="15,000"
                           persistent-placeholder
+                          autocomplete="off"
                         />
                       </VCol>
                     </VRow>
@@ -251,6 +253,7 @@ const clickDrop = (e)=>{
                           :readonly="readonly"
                           placeholder="15,000"
                           persistent-placeholder
+                          autocomplete="off"
                         />
                       </VCol>
                     </VRow>
@@ -276,6 +279,7 @@ const clickDrop = (e)=>{
                           :error-messages="errors?.brand?'El campo es requerido':''"
                           :readonly="readonly"
                           placeholder="RockWell"
+                          autocomplete="off"
                           persistent-placeholder
                         />
                       </VCol>
@@ -303,6 +307,7 @@ const clickDrop = (e)=>{
                           :readonly="readonly"
                           placeholder="Rojo"
                           persistent-placeholder
+                          autocomplete="off"
                         />
                       </VCol>
                     </VRow>
@@ -330,6 +335,7 @@ const clickDrop = (e)=>{
                           :error-messages="errors?.description?'El campo es requerido':''"
                           placeholder="Descripción general del producto"
                           persistent-placeholder
+                          autocomplete="off"
                         />
                       </VCol>
                     </VRow>

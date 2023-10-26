@@ -91,44 +91,32 @@ const orders = [
     amount: '82.5k',
     title: 'Electronic',
     avatarColor: 'primary',
-    subtitle: 'Mobile, Earbuds, TV',
     avatarIcon: 'bx-mobile-alt',
   },
   {
     amount: '23.8k',
     title: 'Fashion',
     avatarColor: 'success',
-    subtitle: 'Tshirt, Jeans, Shoes',
     avatarIcon: 'bx-closet',
   },
   {
     amount: 849,
     title: 'Decor',
     avatarColor: 'info',
-    subtitle: 'Fine Art, Dining',
     avatarIcon: 'bx-home',
   },
   {
     amount: 99,
     title: 'Sports',
     avatarColor: 'secondary',
-    subtitle: 'Football, Cricket Kit',
     avatarIcon: 'bx-football',
   },
 ]
 
 const moreList = [
   {
-    title: 'Share',
-    value: 'Share',
-  },
-  {
     title: 'Refresh',
     value: 'Refresh',
-  },
-  {
-    title: 'Update',
-    value: 'Update',
   },
 ]
 </script>
@@ -137,9 +125,8 @@ const moreList = [
   <VCard>
     <VCardItem class="pb-3">
       <VCardTitle class="mb-1">
-        Order Statistics
+        Ventas por categoría
       </VCardTitle>
-      <VCardSubtitle>42.82k Total Sales</VCardSubtitle>
 
       <template #append>
         <div class="me-n3 mt-n8">
@@ -149,24 +136,7 @@ const moreList = [
     </VCardItem>
 
     <VCardText>
-      <div class="d-flex align-center justify-space-between mb-3">
-        <div class="flex-grow-1">
-          <h4 class="text-h4 mb-1">
-            8,258
-          </h4>
-          <span>Total Orders</span>
-        </div>
 
-        <div>
-          <VueApexCharts
-            type="donut"
-            :height="125"
-            width="105"
-            :options="chartOptions"
-            :series="series"
-          />
-        </div>
-      </div>
 
       <VList class="card-list mt-7">
         <VListItem

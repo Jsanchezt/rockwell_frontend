@@ -30,25 +30,17 @@ const test = ()=>{
       >
         <VCardItem>
           <VCardTitle class="text-md-h5 text-primary">
-            Congratulations John! 🎉
+            Bienvenido administrador de Rockwell 🎉
           </VCardTitle>
         </VCardItem>
 
         <VCardText>
           <span>
-            You have done 72% 🤩 more sales today.
+            En este sitio podras administrar todo lo relacionado con tu tienda.
             <br>
-            Check your new raising badge in your profile.
+            Puedes revisar en cada apartado con detalle.
           </span>
           <br>
-          <VBtn
-            variant="tonal"
-            class="mt-4"
-            size="small"
-            @click="test"
-          >
-            View Badges
-          </VBtn>
         </VCardText>
       </VCol>
 

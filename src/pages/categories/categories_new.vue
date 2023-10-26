@@ -59,7 +59,7 @@ const saveFiles = (files) => {
   const formData = new FormData(); // pass data as a form
   formData.append("images", files[0]);
   axios
-    .post('http://localhost/api/files', formData, {
+    .post('https://rockwell.com.mx/backend/api/files', formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -125,6 +125,7 @@ const { getRootProps, getInputProps, isDragActive, ...rest } = useDropzone({
                           v-model="data.name"
                           placeholder="Tijeras"
                           persistent-placeholder
+                          autocomplete="off"
                         />
                       </VCol>
                     </VRow>
@@ -150,6 +151,7 @@ const { getRootProps, getInputProps, isDragActive, ...rest } = useDropzone({
                           v-model="data.code"
                           placeholder="Tijeras"
                           persistent-placeholder
+                          autocomplete="off"
                         />
                       </VCol>
                     </VRow>

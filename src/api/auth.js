@@ -1,4 +1,4 @@
-
+import config from "@/config/index";
 export default class Auth{
 
 
@@ -7,8 +7,8 @@ export default class Auth{
 
             let payload = {
                 "grant_type":"password",
-                "client_id":"9a5299da-f459-40e6-b3d8-5370edb2dfcf",
-                "client_secret":"LDGDPv3WvKEzEuMRzQhvBFUUGRBTJ576mlrMT677",
+                "client_id":"2",
+                "client_secret":"3qoUPz4fIRANnRVMNPFVsy3TmuT8coRcsVgrflnK",
                 "username":user,
                 "password":pass,
                 "scope":"*"
@@ -20,7 +20,37 @@ export default class Auth{
                 body: JSON.stringify(payload)
             };
 
-            fetch('http://localhost/oauth/token', options)
+            fetch(config.URL_AUTH+'token', options)
+                .then(response => response.json())
+                .then(response => {
+                    if (response.error){
+                        reject(response)
+                    }
+                    resolve(response)
+                })
+                .catch(err => reject(err));
+
+        })
+    }
+
+    refresh_token(refresh_token){
+        return new Promise((resolve, reject)=>{
+
+            let payload = {
+                "grant_type":"refresh_token",
+                "client_id":"2",
+                "client_secret":"3qoUPz4fIRANnRVMNPFVsy3TmuT8coRcsVgrflnK",
+                "refresh_token":refresh_token,
+                "scope":"*"
+            }
+
+            const options = {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(payload)
+            };
+
+            fetch(config.URL_AUTH+'token', options)
                 .then(response => response.json())
                 .then(response => {
                     if (response.error){

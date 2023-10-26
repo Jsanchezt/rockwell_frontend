@@ -1,4 +1,6 @@
 import axios from 'axios'
+import config from "@/config/index";
+import Auth from "@/api/auth";
 
 
 let isRefreshing = false;
@@ -13,7 +15,7 @@ const onRefreshToken = (token)=>{
 };
 
 const axiosInstance  = axios.create({
-    baseURL: 'http://localhost/api',
+    baseURL: config.URL_API,
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -42,17 +44,15 @@ axiosInstance.interceptors.response.use(
             if(!isRefreshing){
                 //Refresh token
                 isRefreshing = true;
-                // pkce.refreshToken().then((data)=>{
-                //     try{
-                //         Echo.options.auth.headers['Authorization'] = `Bearer ${data.access_token}`;
-                //     }catch(e){
-                //
-                //     }
-                //     isRefreshing = false;
-                //     onRefreshToken(data.access_token);
-                // }).catch(error => {
-                //     //logout process
-                // });
+                let auth =  new Auth();
+                auth.refresh_token(localStorage.getItem('rt')).then(data=>{
+                    isRefreshing = false;
+                    localStorage.setItem('at',data.access_token)
+                    localStorage.setItem('rt',data.refresh_token)
+                    onRefreshToken(data.access_token);
+                }).catch(error => {
+                    window.location.reload()
+                })
             }
 
             return new Promise((resolve) => {

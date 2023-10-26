@@ -1,18 +1,44 @@
 <script setup>
 import {useStore} from "vuex";
+import {ref, watch} from "vue";
+
 const categories = ref([]);
 const loading = ref(true);
+const search = ref("");
+const results = ref([]);
 const store = useStore()
 const getCategories = (payload) => store.dispatch("categories/getCategories", {});
 const getData = ()=>{
   loading.value = true
   getCategories().then(data=>{
     categories.value = data;
+    results.value = categories.value.data
     loading.value =false
   })
 }
 
-getData()
+getData();
+
+watch(search,(newValue)=>{
+  if (newValue.length){
+    results.value = filterByName(categories.value.data, newValue)
+  }else{
+    results.value = categories.value.data
+  }
+})
+
+function filterByName(arrayOfObjects, searchString) {
+  return arrayOfObjects.filter(function(object) {
+    // Convert to lowercase for case-insensitive search
+    const nameInLowerCase = object.name.toLowerCase();
+    const searchInLowerCase = searchString.toLowerCase();
+
+    // Use startsWith to check if the name starts with the search string
+    // Or use includes to check if the name contains the search string
+    return nameInLowerCase.startsWith(searchInLowerCase) || nameInLowerCase.includes(searchInLowerCase);
+  });
+}
+
 </script>
 
 <template>
@@ -37,6 +63,23 @@ getData()
 
         </v-card-title>
 
+        <div class="px-5">
+          <VRow no-gutters>
+            <VCol
+              cols="12"
+              md="9"
+            >
+              <VTextField
+                id="name"
+                append-icon="search"
+                v-model="search"
+                placeholder="Buscar"
+                persistent-placeholder
+                autocomplete="off"
+              />
+            </VCol>
+          </VRow>
+        </div>
 
         <VTable
           class="pa-5"
@@ -64,13 +107,13 @@ getData()
           </thead>
           <tbody>
             <template v-if="!loading">
-              <tr v-if="categories.data.length === 0">
+              <tr v-if="results === 0">
                 <td colspan="5" class="text-center">
                   Sin categorias
                 </td>
               </tr>
               <tr
-                v-for="(item,index) in categories.data"
+                v-for="(item,index) in results"
                 :key="'user'+index"
               >
                 <td>
@@ -106,6 +149,9 @@ getData()
             </template>
           </tbody>
         </VTable>
+
+
+
       </VCard>
     </VCol>
   </VRow>

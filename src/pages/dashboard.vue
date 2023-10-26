@@ -18,7 +18,7 @@ import wallet from '@images/cards/wallet-info.png'
     <!-- 👉 Congratulations -->
     <VCol
       cols="12"
-      md="8"
+      md="12"
     >
       <AnalyticsCongratulations />
     </VCol>
@@ -35,10 +35,10 @@ import wallet from '@images/cards/wallet-info.png'
         >
           <CardStatisticsVertical
             v-bind="{
-              title: 'Profit',
+              title: 'Productos',
               image: chart,
-              stats: '$12,628',
-              change: 72.80,
+              stats: '15',
+              change: 1,
             }"
           />
         </VCol>
@@ -50,25 +50,26 @@ import wallet from '@images/cards/wallet-info.png'
         >
           <CardStatisticsVertical
             v-bind="{
-              title: 'Sales',
+              title: 'Categorias',
               image: wallet,
-              stats: '$4,679',
-              change: 28.42,
+              stats: '8',
+              change: 1,
             }"
           />
         </VCol>
       </VRow>
+      <VRow>
+        <VCol
+          cols="12"
+          md="12"
+          sm="12"
+        >
+          <AnalyticsTransactions />
+        </VCol>
+      </VRow>
     </VCol>
 
-    <!-- 👉 Total Revenue -->
-    <VCol
-      cols="12"
-      md="8"
-      order="2"
-      order-md="1"
-    >
-      <AnalyticsTotalRevenue />
-    </VCol>
+
 
     <VCol
       cols="12"
@@ -85,10 +86,10 @@ import wallet from '@images/cards/wallet-info.png'
         >
           <CardStatisticsVertical
             v-bind=" {
-              title: 'Payments',
-              image: paypal,
-              stats: '$2,468',
-              change: -14.82,
+              title: 'Intenciones',
+              image:  card,
+              stats: '468',
+              change: 2,
             }"
           />
         </VCol>
@@ -100,24 +101,17 @@ import wallet from '@images/cards/wallet-info.png'
         >
           <CardStatisticsVertical
             v-bind="{
-              title: 'Transactions',
-              image: card,
-              stats: '$14,857',
-              change: 28.14,
+              title: 'Compras',
+              image: paypal,
+              stats: '857',
+              change: -8,
             }"
           />
         </VCol>
       </VRow>
 
-      <VRow>
-        <!-- 👉 Profit Report -->
-        <VCol
-          cols="12"
-          sm="12"
-        >
-          <AnalyticsProfitReport />
-        </VCol>
-      </VRow>
+
+
     </VCol>
 
     <!-- 👉 Order Statistics -->
@@ -130,24 +124,7 @@ import wallet from '@images/cards/wallet-info.png'
       <AnalyticsOrderStatistics />
     </VCol>
 
-    <!-- 👉 Tabs chart -->
-    <VCol
-      cols="12"
-      md="4"
-      sm="6"
-      order="3"
-    >
-      <AnalyticsFinanceTabs />
-    </VCol>
 
-    <!-- 👉 Transactions -->
-    <VCol
-      cols="12"
-      md="4"
-      sm="6"
-      order="3"
-    >
-      <AnalyticsTransactions />
-    </VCol>
+
   </VRow>
 </template>

@@ -73,11 +73,11 @@ export default {
   data: () => ({
     logo: logo,
     form: {
-      email: 'jc@gmail.com'
+      email: 'char2296@hotmail.com'
     },
     emailRules: [
       v => !!v || 'Email es requerido',
-      v => (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(v)) || 'Email no valido',
+      v => (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}/i.test(v)) || 'Email no valido',
     ],
     passwordRules: [
       v => !!v || 'Password es requerido',
